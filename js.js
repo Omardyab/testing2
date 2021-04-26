@@ -1,19 +1,20 @@
-// Victoria teh code is workign fine except for the selection group I tried to call by id 
-//both the group and the activity yet it did not work.
-//price or offer is workign fine checked boxes and numbe rof persons
-//I checked youtube videos and googled yet i could not solve it.
-//please take a look or search for optiongroup maybe you will find something i did not find
-
-// const groups=document.getElementsById('optgroup');
-// const selectedvalue=document.getElementsById('optgroup');
-// selectedvalue.addEventListener('input',handleselect);
+let baseprice=0;
+let totalprice=0;
+let pricetguide=0;
+let pricebreakfast=0;
+let hikingbaseprice=20;
+let Relaxingbaseprice=15;
+let Exploringbaseprice=10;
+document.getElementById('siteChosen');
 const checkBox = document.getElementById('breakfast');
+const site=document.getElementById('siteChosen');
 console.log(checkBox);
 const checkBox2 = document.getElementById('guide');
 console.log(checkBox2);
 const form=document.getElementById('details');
 form.addEventListener('submit',getselect);
 console.log(form);
+
 function getselect(event){
   event.preventDefault();
   console.log(event);
@@ -23,16 +24,57 @@ function getselect(event){
   const tguide=adv.guide.checked;
   console.log(breakfast);
   console.log(tguide);
-  let Hiking=new Booking('Hiking',persons,breakfast,tguide);
-  Hiking.caltotal();
+  let activity=site.value;
+  console.log(activity);
+  switch(activity){
+  case 'Valley Of The Moon /Rum':
+  case 'Waleh Valley':
+  case 'Salaytah Valley':
+  case 'Aya Valley':
+    activity='Hiking';
+    break;
+  case 'Dead Sea':
+  case 'Maeen Hot Springs':
+  case 'Aquaba':
+  case 'Ajloun Forest':
+    activity='Relaxing';
+    break;
+  case 'Petra':
+  case 'Down Town':
+  case 'Salt':
+  case 'Jerash':
+  case 'Amman Citadel':
+  case 'Karak Castle':
+  case 'Ajoun Castle':
+    activity='Exploring';
+    console.log('f is working');
+    break;
+  }
+  console.log(site);
+  let adventure=new Booking(activity,persons,breakfast,tguide);
+  adventure.caltotal();
 }
-// handleselect function for selection group
-// function handleselect(event){
-//   event.preventDefault();
-//   let select=event.target;
-//   console.log(select);
-// }
-// getselect();
+
+function savToLs(){
+  localStorage.setItem('requestconfirmed',Booking.request);
+  console.log(JSON.stringify(Booking.request));
+  let arrstr=JSON.stringify(Booking.request);
+  localStorage.setItem('requestconfirmed',arrstr);
+  if (Continfo.request !==null){
+    localStorage.setItem('bookingconfiremd',Continfo.request);
+    console.log(JSON.stringify(Continfo.request));
+    let contArrStr=JSON.stringify(Continfo.request);
+    localStorage.setItem('bookingconfiremd',contArrStr);
+  }
+}
+function Continfo(username,number1)
+{
+  this.username=username;
+  this.number1=number1;
+  Continfo.request.push(this);
+  savToLs();
+}
+Continfo.request=[];
 function randomValue(min,max){
   return Math.floor(Math.random()*(max-min+1)+min);
 }
@@ -41,22 +83,11 @@ function Booking (activity,persons,breakfast,tguide){
   this.persons=persons;
   this.breakfast=breakfast;
   this.tguide=tguide;
+  Booking.request.push(this);
+  savToLs();
   console.log(this);
 }
-//static values
-let baseprice=0;
-let totalprice=0;
-let pricetguide=0;
-let pricebreakfast=0;
-let hikingbaseprice=10;
-let Relaxingbaseprice=6;
-let Exploringbaseprice=20;
-//dynamica values
-// if user choose activity make this object
-// let Hiking=new Booking('Hiking',persons,breakfast,tguide);
-// let Relaxing=new Booking('Relaxing',persons,breakfast,tguide);
-// let Exploring =new Booking('Exploring',persons,breakfast,tguide);
-
+Booking.request=[];
 Booking.prototype.caltotal = function()
 {
   if(this.activity==='Exploring')
@@ -83,15 +114,15 @@ Booking.prototype.caltotal = function()
   console.log(totalprice);
   if(randomValue(1,3)===1)
   { totalprice=totalprice*.85;
-    console.log('Its the 100 anniversry and we have special offer for you 15% ',totalprice);
+    console.log('Its the 100 anniversry and we have special offer for you of 15% discount ',totalprice);
   }
   else if(randomValue(2,3)===2)
-  { totalprice=totalprice*.50;
-    console.log('Its the 100 anniversry and we have special offer for you of 50% ',totalprice);
+  { totalprice=totalprice*.80;
+    console.log('Its the 100 anniversry and we have special offer for you of 20% discount ',totalprice);
   }
   else {
     totalprice=totalprice*.75;
-    console.log('Its the 100 anniversry and we have special offer for you of 25% ',totalprice); 
+    console.log('Its the 100 anniversry and we have special offer for you of 25% discount ',totalprice);
   }
 };
 
