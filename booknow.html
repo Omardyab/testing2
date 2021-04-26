@@ -7,6 +7,50 @@
     <title>Document</title>
 </head>
 <body>
+    <section id="Filter"> 
+        <!-- <select id="type"></select>
+          <select id="site">
+      
+       </select> --> 
+
+       <select name="choose your adventure" id="groupop">
+        <option value="null">Select your adventure</option>
+           <optgroup label="Hiking" id="Hiking" name="Hiking" >
+            <option value="Wadi Rum">Wadi Rum</option>
+            <option value="Wadi Al-Waleh">Wadi Al-Waleh</option>
+            <option value="Wadi Al-Salaytah">Wadi Al-Salaytah</option>
+            <option value="Wadi Aya">Wadi Aya</option>
+           </optgroup>
+           <optgroup label="relaxing" id="relaxing">
+              <option value="Dead Sea">Dead Sea</option>
+              <option value="Ma\'in Hot Springs">Ma'in Hot Springs</option>
+              <option value="Aquaba">Aquaba</option>
+              <option value="Ajloun">Ajloun</option>
+           </optgroup>
+           <optgroup label="exploring" id="exploring">
+              <option value="Petra">Petra</option>
+              <option value="Down Town">Down Town</option>
+              <option value="Salt">Salt</option>
+              <option value="Jerash">Jerash</option>
+              <option value="Amman Citadel">Amman Citadel</option>
+              <option value="Karak Castle">Karak Castle</option>
+              <option value="Ajoun Castle">Ajoun Castle</option>
+           </optgroup>
+       </select>
+      <form id="details">
+      <input type="checkbox" id="breakfast" name='cb1'>      
+      <label for="" > Include Breakfast</label>
+      <br>
+      <input type="checkbox" id="guide" name='cb2'>
+      <label for="">Include Tour Guid</label>
+      <br>
+      <label for="persons">Number of travellers</label>
+      <input type="number" maxlength="2" pattern="[1-9]{1}" required id="persons">
+      <br>
+      <label for="number of tickets">Tickets</label>
+      <input type="submit" value="submit" id="submit" />          
+     </form>
+  </section>
     <script src="js.js"></script>
 </body>
 </html>
